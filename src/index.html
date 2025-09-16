@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline';" />
+    <title>Electron Tetris</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="layout">
+      <section class="playfield" aria-label="Tetris playfield">
+        <canvas id="playfield" class="playfield__canvas" role="img" aria-label="Active Tetris board"></canvas>
+      </section>
+      <aside class="sidebar">
+        <section class="panel">
+          <h2 class="panel__title">Game Status</h2>
+          <p id="status-text" class="status status--ready">Press Restart to begin</p>
+        </section>
+        <section class="panel">
+          <h2 class="panel__title">Statistics</h2>
+          <dl class="stats">
+            <div class="stats__row">
+              <dt>Score</dt>
+              <dd id="score-value">0</dd>
+            </div>
+            <div class="stats__row">
+              <dt>Lines</dt>
+              <dd id="lines-value">0</dd>
+            </div>
+            <div class="stats__row">
+              <dt>Level</dt>
+              <dd id="level-value">1</dd>
+            </div>
+            <div class="stats__row">
+              <dt>Speed</dt>
+              <dd id="speed-value">1.00×</dd>
+            </div>
+          </dl>
+        </section>
+        <section class="panel">
+          <h2 class="panel__title">Next Piece</h2>
+          <canvas id="next-piece" class="next-piece__canvas" aria-label="Upcoming piece preview"></canvas>
+        </section>
+        <section class="panel">
+          <h2 class="panel__title">Controls</h2>
+          <ul class="controls">
+            <li><span class="controls__key">← →</span> Move</li>
+            <li><span class="controls__key">↓</span> Soft drop</li>
+            <li><span class="controls__key">Space</span> Hard drop</li>
+            <li><span class="controls__key">↑ / X</span> Rotate clockwise</li>
+            <li><span class="controls__key">Z</span> Rotate counter-clockwise</li>
+            <li><span class="controls__key">P</span> Pause / resume</li>
+            <li><span class="controls__key">R</span> Restart</li>
+          </ul>
+        </section>
+        <section class="panel panel--actions">
+          <button id="pause-button" type="button" class="button" aria-pressed="false">Pause</button>
+          <button id="restart-button" type="button" class="button button--primary">Restart</button>
+        </section>
+      </aside>
+    </main>
+    <footer class="footer">
+      <span>Tetris for Electron</span>
+      <span id="app-version" class="footer__version"></span>
+    </footer>
+    <script type="module" src="./renderer/main.js"></script>
+  </body>
+</html>

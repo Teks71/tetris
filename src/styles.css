@@ -1,0 +1,235 @@
+:root {
+  color-scheme: dark light;
+  --color-bg: #0f172a;
+  --color-panel: rgba(15, 23, 42, 0.8);
+  --color-panel-border: rgba(148, 163, 184, 0.25);
+  --color-text: #e2e8f0;
+  --color-accent: #38bdf8;
+  --color-muted: #94a3b8;
+  --panel-radius: 12px;
+  --shadow: 0 12px 30px rgba(15, 23, 42, 0.35);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Roboto, system-ui, -apple-system, sans-serif;
+  background: radial-gradient(circle at top, #1d283a 0%, #0f172a 60%, #020617 100%);
+  color: var(--color-text);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.layout {
+  flex: 1;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 2rem;
+  padding: 2rem 3vw 1rem;
+}
+
+.playfield {
+  flex: 1 1 320px;
+  max-width: 460px;
+  width: clamp(320px, 40vw, 460px);
+  aspect-ratio: 10 / 20;
+  background: rgba(15, 23, 42, 0.35);
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  border-radius: var(--panel-radius);
+  overflow: hidden;
+  position: relative;
+}
+
+.playfield__canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.sidebar {
+  flex: 0 0 260px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.panel {
+  background: var(--color-panel);
+  border: 1px solid var(--color-panel-border);
+  border-radius: var(--panel-radius);
+  padding: 1rem 1.25rem;
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(8px);
+}
+
+.panel__title {
+  margin: 0 0 0.75rem;
+  font-size: 1.1rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+
+.status {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.status--ready {
+  color: #fbbf24;
+}
+
+.status--running {
+  color: #34d399;
+}
+
+.status--paused {
+  color: #fbbf24;
+}
+
+.status--over {
+  color: #f87171;
+}
+
+.stats {
+  margin: 0;
+  padding: 0;
+}
+
+.stats__row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.35rem 0;
+  border-bottom: 1px dashed rgba(148, 163, 184, 0.2);
+}
+
+.stats__row:last-child {
+  border-bottom: none;
+}
+
+.stats dt {
+  font-size: 0.95rem;
+  color: var(--color-muted);
+}
+
+.stats dd {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.controls {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 0.5rem;
+}
+
+.controls__key {
+  display: inline-block;
+  min-width: 4rem;
+  padding: 0.2rem 0.5rem;
+  border-radius: 6px;
+  background: rgba(148, 163, 184, 0.15);
+  color: var(--color-text);
+  text-align: center;
+  font-weight: 600;
+  margin-right: 0.6rem;
+}
+
+.panel--actions {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: space-between;
+}
+
+.button {
+  flex: 1;
+  padding: 0.65rem 0.5rem;
+  border-radius: 8px;
+  border: 1px solid rgba(148, 163, 184, 0.4);
+  background: rgba(15, 23, 42, 0.6);
+  color: var(--color-text);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+}
+
+.button:hover,
+.button:focus-visible {
+  outline: none;
+  transform: translateY(-1px);
+  box-shadow: 0 8px 20px rgba(56, 189, 248, 0.35);
+}
+
+.button--primary {
+  border-color: rgba(56, 189, 248, 0.4);
+  background: linear-gradient(135deg, rgba(56, 189, 248, 0.9), rgba(59, 130, 246, 0.8));
+}
+
+.next-piece__canvas {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  display: block;
+  border-radius: 8px;
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  background: rgba(2, 6, 23, 0.45);
+}
+
+.footer {
+  padding: 1rem 3vw 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--color-muted);
+  font-size: 0.9rem;
+}
+
+.footer__version {
+  font-variant-numeric: tabular-nums;
+}
+
+@media (max-width: 900px) {
+  .layout {
+    padding: 1.5rem 5vw;
+  }
+
+  .sidebar {
+    flex: 1 1 100%;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .panel {
+    flex: 1 1 calc(50% - 1rem);
+  }
+
+  .panel--actions {
+    flex: 1 1 100%;
+  }
+}
+
+@media (max-width: 640px) {
+  .layout {
+    padding: 1rem;
+  }
+
+  .sidebar {
+    flex-direction: column;
+  }
+
+  .panel {
+    flex: 1 1 100%;
+  }
+}

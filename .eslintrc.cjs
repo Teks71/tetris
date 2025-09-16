@@ -1,0 +1,20 @@
+module.exports = {
+  env: {
+    browser: true,
+    node: true,
+    es2022: true
+  },
+  extends: ['eslint:recommended'],
+  parserOptions: {
+    ecmaVersion: 2022,
+    sourceType: 'module'
+  },
+  globals: {
+    electronAPI: 'readonly'
+  },
+  ignorePatterns: ['dist/'],
+  rules: {
+    'no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
+    'no-undef': 'error'
+  }
+};
